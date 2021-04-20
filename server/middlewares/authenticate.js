@@ -12,11 +12,11 @@ import User from '../models/user.model';
  */
 
 export default (req, res, next) => {
-    const authorizationHeader = req.headers['authorization'];
+    const authorizationHeader = req.headers['x-xsrf-token'];
     let token;
 
     if (authorizationHeader) {
-        token = authorizationHeader.split(' ')[1];
+        token = authorizationHeader;
     }
 
     if (token) {

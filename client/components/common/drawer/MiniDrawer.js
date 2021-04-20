@@ -13,6 +13,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
+import history from '../../../utils/history';
 
 const drawerWidth = 250;
 
@@ -94,7 +95,7 @@ const MiniDrawer = (props) => {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => history.push('/users')}>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>

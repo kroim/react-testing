@@ -22,7 +22,7 @@ import * as httpService from '../services/httpService';
 export const fetchAll = (entity) => {
     return dispatch => {
         return httpService.fetchEntity(entity).then((response) => {
-            dispatch(commonAction.fetch(entity, response.data));
+            dispatch(commonAction.fetch(entity.toLowerCase(), response.data.data));
         })
             .catch((error) => {
                 dispatch(commonAction.failure(error));
@@ -33,7 +33,7 @@ export const fetchAll = (entity) => {
 export const fetchById = (entity, id) => {
     return dispatch => {
         return httpService.fetchEntityById(entity, id).then((response) => {
-            dispatch(commonAction.selectItem(entity, response.data));
+            dispatch(commonAction.selectItem(entity.toLowerCase(), response.data.data));
         })
             .catch((error) => {
                 dispatch(commonAction.failure(error));
@@ -44,7 +44,7 @@ export const fetchById = (entity, id) => {
 export const storeItem = (entity, data) => {
     return dispatch => {
         return httpService.storeEntity(entity, data).then((response) => {
-            history.goBack();
+            //history.goBack();
         })
             .catch((error) => {
                 dispatch(commonAction.failure(error));
@@ -55,7 +55,7 @@ export const storeItem = (entity, data) => {
 export const updateItem = (entity, data, id) => {
     return dispatch => {
         return httpService.updateEntity(entity, data, id).then((response) => {
-            history.goBack();
+            //history.goBack();
         })
             .catch((error) => {
                 dispatch(commonAction.failure(error));
@@ -63,10 +63,10 @@ export const updateItem = (entity, data, id) => {
     };
 };
 
-export const destroyItem = (entity, id, data) => {
+export const destroyItem = (entity, id) => {
     return dispatch => {
         return httpService.destroyEntity(entity, id).then((response) => {
-            dispatch(fetchAll(entity, data));
+            dispatch(fetchAll(entity));
         })
             .catch((error) => {
                 dispatch(commonAction.failure(error));

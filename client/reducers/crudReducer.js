@@ -9,6 +9,7 @@ import {
 
 // products, employees, ...
 let initialState = {
+  users: [],
   products: [],
   selectedItem: {
     product: {},
@@ -20,20 +21,30 @@ let initialState = {
  */
 export default function (state, action) {
   state = state || initialState;
-  let newState;
+  console.log('reducer', action);
+  const newState = {};
 
   switch (action.type) {
     case ENTITY_CREATE:
-      newState[action.entity] = Object.assign({}, state, action.data);
-      return newState;
+      newState[action.entity] = Object.assign([], action.data);
+      return {
+        ...state,
+        ...newState
+      };
 
     case ENTITY_UPDATE:
-      newState[action.entity] = Object.assign({}, state, action.data);
-      return newState;
+      newState[action.entity] = Object.assign([], action.data);
+      return {
+        ...state,
+        ...newState
+      };
 
     case ENTITY_FETCH:
-      newState[action.entity] = Object.assign({}, state, action.data);
-      return newState;
+      newState[action.entity] = Object.assign([], action.data);
+      return {
+        ...state,
+        ...newState
+      };
 
     case ENTITY_DELETE:
       const data = Object.assign({}, state);
